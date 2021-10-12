@@ -1,6 +1,6 @@
 using System;
 using Components.Abstract;
-using InputLogic;
+using Infrastructure.InputLogic;
 using UnityEngine;
 
 namespace Components.Player

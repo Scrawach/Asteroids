@@ -2,8 +2,8 @@ using Components;
 using Components.Player;
 using Infrastructure.AssetManagement;
 using Infrastructure.Factory.Abstract;
+using Infrastructure.InputLogic;
 using Infrastructure.StaticData;
-using InputLogic;
 using StaticData;
 using UnityEngine;
 

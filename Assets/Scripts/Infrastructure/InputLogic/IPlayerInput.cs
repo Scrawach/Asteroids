@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace InputLogic
+namespace Infrastructure.InputLogic
 {
     public interface IPlayerInput
     {

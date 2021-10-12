@@ -16,8 +16,5 @@ namespace StaticData
 
         [Range(0, 2)] 
         public float AccelerationModifier;
-
-        public void ApplyFor(Engine engine) => 
-            engine.Construct(MoveSpeed, RotateSpeed, AccelerationModifier);
     }
 }

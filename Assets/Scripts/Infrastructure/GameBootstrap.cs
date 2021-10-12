@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using Infrastructure.AssetManagement;
 using Infrastructure.Factory;
 using Infrastructure.Factory.Abstract;
+using Infrastructure.InputLogic;
 using Infrastructure.SceneManagement;
 using Infrastructure.States;
 using Infrastructure.States.Abstract;
 using Infrastructure.States.Implementation;
 using Infrastructure.StaticData;
-using InputLogic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Infrastructure
 {
@@ -18,16 +17,13 @@ namespace Infrastructure
     {
         private void Awake()
         {
-            const string initialScene = "Initial";
-            const string gameScene = "GameLoop";
-            
             var sceneStorage = new SceneStorage
             (
                 new CachedAvailableScenes
                 (
                     new AvailableScenes
                     (
-                        new[] { initialScene, gameScene },
+                        new BuildSceneNames(),
                         new SceneFactory(this)
                     )
                 )
