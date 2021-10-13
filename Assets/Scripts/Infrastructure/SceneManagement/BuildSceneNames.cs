@@ -4,9 +4,9 @@ using UnityEngine.SceneManagement;
 
 namespace Infrastructure.SceneManagement
 {
-    public class BuildSceneNames
+    public class BuildSceneNames : ISceneNames
     {
-        public IEnumerable<string> Content()
+        public IEnumerable<string> Names()
         {
             var sceneCount = SceneManager.sceneCountInBuildSettings;
             var scenes = new string[sceneCount];

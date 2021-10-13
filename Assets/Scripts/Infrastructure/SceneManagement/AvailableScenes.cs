@@ -6,18 +6,18 @@ namespace Infrastructure.SceneManagement
 {
     public class AvailableScenes : IAvailableScenes
     {
-        private readonly BuildSceneNames _buildSceneNames;
+        private readonly ISceneNames _sceneNames;
         private readonly ISceneFactory _factory;
 
-        public AvailableScenes(BuildSceneNames buildSceneNames, ISceneFactory factory)
+        public AvailableScenes(ISceneNames sceneNames, ISceneFactory factory)
         {
-            _buildSceneNames = buildSceneNames;
+            _sceneNames = sceneNames;
             _factory = factory;
         }
 
         public Dictionary<string, ILoadingScene> Scenes()
         {
-            return _buildSceneNames.Content()
+            return _sceneNames.Names()
                 .ToDictionary(name => name, 
                     value => _factory.Create(value));
         }
