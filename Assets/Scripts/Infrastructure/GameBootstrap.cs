@@ -30,12 +30,14 @@ namespace Infrastructure
             );
 
             var assetsDatabase = new AssetsDatabase();
+            var assets = new Assets(assetsDatabase);
             var staticDatabase = new StaticDatabase(assetsDatabase);
             var gameFactory = new GameFactory
             (
                 new Dictionary<ObjectId, IObjectFactory>
                 {
-                    [ObjectId.Player] = new PlayerFactory(new Assets(assetsDatabase), new PlayerInput(), staticDatabase),
+                    [ObjectId.Player] = new PlayerFactory(assets, new PlayerInput(), staticDatabase),
+                    [ObjectId.UIRoot] = new CachedFactory(new UIRootFactory(assets))
                 }
             );
 

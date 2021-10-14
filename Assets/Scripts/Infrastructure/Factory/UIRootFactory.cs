@@ -1,6 +1,8 @@
+using System;
 using Infrastructure.AssetManagement;
 using Infrastructure.Factory.Abstract;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Infrastructure.Factory
 {

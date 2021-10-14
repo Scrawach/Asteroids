@@ -30,7 +30,8 @@ namespace Infrastructure.Factory
             player.GetComponent<RotateToMouse>().Construct(_playerInput);
 
             var engineData = _staticDatabase.ForEngine(EngineId.Player);
-            player.GetComponent<Engine>().Construct(engineData.MoveSpeed, engineData.RotateSpeed, engineData.AccelerationModifier);
+            player.GetComponent<Engine>().Construct(engineData.MoveSpeed, 
+                engineData.RotateSpeed, engineData.AccelerationModifier);
             return player;
         }
     }

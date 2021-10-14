@@ -5,6 +5,7 @@ namespace Infrastructure.Factory
         None,
         Player,
         Alien,
-        Asteroid
+        Asteroid,
+        UIRoot
     }
 }

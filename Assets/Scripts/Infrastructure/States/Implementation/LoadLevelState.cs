@@ -32,6 +32,7 @@ namespace Infrastructure.States.Implementation
         private void OnLoaded()
         {
             var player = _gameFactory.Create(ObjectId.Player);
+            var uiRoot = _gameFactory.Create(ObjectId.UIRoot);
             _stateMachine.Enter<GameLoopState, GameObject>(player);
         }
     }
