@@ -1,14 +1,40 @@
+using System;
+using System.Collections;
+using Components.Abstract;
+using Infrastructure.Factory.Abstract;
 using UnityEngine;
 
 namespace Components
 {
-    public interface IWeapon
+    public class Weapon : MonoBehaviour, IWeapon
     {
-        bool TryFire();
-    }
-    
-    public class Weapon : MonoBehaviour
-    {
+        [SerializeField] 
+        private Transform _shotPoint;
 
+        private IObjectFactory _buttonFactory;
+        private MonoTimer _cooldown;
+
+        public void Construct(IObjectFactory bullets, float cooldown)
+        {
+            _buttonFactory = bullets;
+            _cooldown = new MonoTimer(cooldown);
+        }
+
+        private void Update() => 
+            _cooldown.Update(Time.deltaTime);
+
+        public bool TryFire() => 
+            CanShot() && Fire();
+
+        private bool CanShot() => 
+            _cooldown.IsDone;
+
+        private bool Fire()
+        {
+            var bullet = _buttonFactory.Create();
+            bullet.transform.position = _shotPoint.position;
+            _cooldown.Start();
+            return true;
+        }
     }
 }

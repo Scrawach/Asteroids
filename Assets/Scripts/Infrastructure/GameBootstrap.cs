@@ -36,7 +36,7 @@ namespace Infrastructure
             (
                 new Dictionary<ObjectId, IObjectFactory>
                 {
-                    [ObjectId.Player] = new PlayerFactory(assets, new PlayerInput(), staticDatabase),
+                    [ObjectId.Player] = new PlayerFactory(assets, staticDatabase, new BulletFactory(assets)),
                     [ObjectId.UIRoot] = new CachedFactory(new UIRootFactory(assets))
                 }
             );

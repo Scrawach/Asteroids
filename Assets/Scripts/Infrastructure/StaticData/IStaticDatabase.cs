@@ -7,5 +7,6 @@ namespace Infrastructure.StaticData
     {
         void Load();
         EngineConfig ForEngine(EngineId engineId);
+        PlayerInputData ForPlayerInput();
     }
 }

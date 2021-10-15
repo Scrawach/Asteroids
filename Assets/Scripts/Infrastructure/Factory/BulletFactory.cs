@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Infrastructure.Factory
 {
-    public class UIRootFactory : IObjectFactory
+    public class BulletFactory : IObjectFactory
     {
-        private const string RootPath = "UI/UIRoot";
+        private const string RootPath = "Weapon/Bullet";
         private readonly IAssets _assets;
 
-        public UIRootFactory(IAssets assets) => 
+        public BulletFactory(IAssets assets) => 
             _assets = assets;
 
         public GameObject Create() => 
