@@ -11,21 +11,20 @@ namespace Infrastructure.Factory
 {
     public class PlayerFactory : IObjectFactory
     {
-        private const string Path = "Player/PlayerShip";
-        private readonly IAssets _assets;
+        private readonly IAsset _asset;
         private readonly IStaticDatabase _staticDatabase;
         private readonly IObjectFactory _bulletFactory;
 
-        public PlayerFactory(IAssets assets, IStaticDatabase staticDatabase, IObjectFactory bulletFactory)
+        public PlayerFactory(IAsset asset, IStaticDatabase staticDatabase, IObjectFactory bulletFactory)
         {
-            _assets = assets;
+            _asset = asset;
             _staticDatabase = staticDatabase;
             _bulletFactory = bulletFactory;
         }
 
         public GameObject Create()
         {
-            var player = _assets.Instantiate<GameObject>(Path);
+            var player = _asset.Instantiate<GameObject>();
 
             var playerData = _staticDatabase.ForPlayerInput();
             var playerInput = new PlayerInput(playerData.HorizontalAxis, playerData.VerticalAxis, playerData.Fire,

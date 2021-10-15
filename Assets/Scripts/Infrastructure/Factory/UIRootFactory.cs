@@ -7,12 +7,12 @@ namespace Infrastructure.Factory
     public class UIRootFactory : IObjectFactory
     {
         private const string RootPath = "UI/UIRoot";
-        private readonly IAssets _assets;
+        private readonly IAsset _asset;
 
-        public UIRootFactory(IAssets assets) => 
-            _assets = assets;
+        public UIRootFactory(IAsset asset) => 
+            _asset = asset;
 
         public GameObject Create() => 
-            _assets.Instantiate<GameObject>(RootPath);
+            _asset.Instantiate<GameObject>();
     }
 }

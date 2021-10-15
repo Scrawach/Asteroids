@@ -6,13 +6,12 @@ namespace Infrastructure.Factory
 {
     public class BulletFactory : IObjectFactory
     {
-        private const string RootPath = "Weapon/Bullet";
-        private readonly IAssets _assets;
+        private readonly IAsset _asset;
 
-        public BulletFactory(IAssets assets) => 
-            _assets = assets;
+        public BulletFactory(IAsset asset) => 
+            _asset = asset;
 
         public GameObject Create() => 
-            _assets.Instantiate<GameObject>(RootPath);
+            _asset.Instantiate<GameObject>();
     }
 }
