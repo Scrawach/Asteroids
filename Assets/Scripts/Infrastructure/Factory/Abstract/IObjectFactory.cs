@@ -6,4 +6,5 @@ namespace Infrastructure.Factory.Abstract
     {
         GameObject Create();
     }
+
 }

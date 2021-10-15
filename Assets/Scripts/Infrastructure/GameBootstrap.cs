@@ -29,16 +29,33 @@ namespace Infrastructure
                 )
             );
 
-            var assetsDatabase = new AssetsDatabase();
-
-            var staticDatabase = new StaticDatabase(assetsDatabase);
+            var assets = new AssetsDatabase();
+            var staticDatabase = new StaticDatabase(assets);
+            var playerFactory =
+                new PlayerFactory
+                (
+                    new DeathObjectFactory
+                    (
+                        new EngineFactory
+                        (
+                            new WeaponFactory
+                            (
+                                new ObjectFactory(new Asset(assets, "Player/PlayerShip")),
+                                new BulletFactory(new Asset(assets, "Weapon/Bullet"))
+                            ), 
+                            staticDatabase
+                        ), 
+                        new ObjectFactory(new Asset(assets, "VFX/PlayerDeath_VFX"))
+                    ), 
+                    staticDatabase
+                );
+            
             var gameFactory = new GameFactory
             (
                 new Dictionary<ObjectId, IObjectFactory>
                 {
-                    [ObjectId.Player] = new PlayerFactory(new Asset(assetsDatabase, "Player/PlayerShip"), 
-                        staticDatabase, new BulletFactory(new Asset(assetsDatabase, "Weapon/Bullet"))),
-                    [ObjectId.UIRoot] = new CachedFactory(new UIRootFactory(new Asset(assetsDatabase, "UI/UIRoot")))
+                    [ObjectId.Player] = playerFactory,
+                    [ObjectId.UIRoot] = new CachedFactory(new UIRootFactory(new Asset(assets, "UI/UIRoot")))
                 }
             );
 
