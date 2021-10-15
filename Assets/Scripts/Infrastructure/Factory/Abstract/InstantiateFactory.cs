@@ -1,17 +1,15 @@
 using Infrastructure.AssetManagement;
-using Infrastructure.Factory.Abstract;
 using UnityEngine;
 
-namespace Infrastructure.Factory
+namespace Infrastructure.Factory.Abstract
 {
-    public class UIRootFactory : IObjectFactory
+    public class InstantiateFactory : IObjectFactory
     {
-        private const string RootPath = "UI/UIRoot";
         private readonly IAsset _asset;
 
-        public UIRootFactory(IAsset asset) => 
+        public InstantiateFactory(IAsset asset) => 
             _asset = asset;
-
+        
         public GameObject Create() => 
             _asset.Instantiate<GameObject>();
     }

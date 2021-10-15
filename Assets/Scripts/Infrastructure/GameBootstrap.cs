@@ -28,25 +28,24 @@ namespace Infrastructure
                     )
                 )
             );
-
+            
             var assets = new AssetsDatabase();
             var staticDatabase = new StaticDatabase(assets);
-            var playerFactory =
-                new PlayerFactory
+            var playerFactory = new PlayerFactory
                 (
-                    new DeathObjectFactory
+                    new EngineFactory
                     (
-                        new EngineFactory
+                        new WeaponFactory
                         (
-                            new WeaponFactory
+                            new MortalObjectFactory
                             (
-                                new ObjectFactory(new Asset(assets, "Player/PlayerShip")),
-                                new BulletFactory(new Asset(assets, "Weapon/Bullet"))
-                            ), 
-                            staticDatabase
+                                new InstantiateFactory(new Asset(assets, "Player/PlayerShip")),
+                                new InstantiateFactory(new Asset(assets, "VFX/PlayerDeath_VFX"))
+                            ),
+                            new InstantiateFactory(new Asset(assets, "Weapon/Bullet"))
                         ), 
-                        new ObjectFactory(new Asset(assets, "VFX/PlayerDeath_VFX"))
-                    ), 
+                        staticDatabase
+                    ),
                     staticDatabase
                 );
             
@@ -55,7 +54,7 @@ namespace Infrastructure
                 new Dictionary<ObjectId, IObjectFactory>
                 {
                     [ObjectId.Player] = playerFactory,
-                    [ObjectId.UIRoot] = new CachedFactory(new UIRootFactory(new Asset(assets, "UI/UIRoot")))
+                    [ObjectId.UIRoot] = new CachedFactory(new InstantiateFactory(new Asset(assets, "UI/UIRoot")))
                 }
             );
 

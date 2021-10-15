@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Infrastructure.Factory
 {
-    public class DeathObjectFactory : IObjectFactory
+    public class MortalObjectFactory : IObjectFactory
     {
         private readonly IObjectFactory _objectFactory;
         private readonly IObjectFactory _vfxFactory;
 
-        public DeathObjectFactory(IObjectFactory objectFactory, IObjectFactory vfxFactory)
+        public MortalObjectFactory(IObjectFactory objectFactory, IObjectFactory vfxFactory)
         {
             _objectFactory = objectFactory;
             _vfxFactory = vfxFactory;

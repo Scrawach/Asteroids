@@ -6,18 +6,18 @@ namespace Infrastructure.Factory
 {
     public class WeaponFactory : IObjectFactory
     {
-        private readonly IObjectFactory _factory;
+        private readonly IObjectFactory _objectFactory;
         private readonly IObjectFactory _bulletFactory;
 
-        public WeaponFactory(IObjectFactory factory, IObjectFactory bulletFactory)
+        public WeaponFactory(IObjectFactory objectFactory, IObjectFactory bulletFactory)
         {
-            _factory = factory;
+            _objectFactory = objectFactory;
             _bulletFactory = bulletFactory;
         }
         
         public GameObject Create()
         {
-            var obj = _factory.Create();
+            var obj = _objectFactory.Create();
             obj.GetComponent<Weapon>().Construct(_bulletFactory, 2f);
             return obj;
         }
