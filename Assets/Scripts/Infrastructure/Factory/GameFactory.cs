@@ -19,6 +19,13 @@ namespace Infrastructure.Factory
             throw new NotFoundSuitableFactoryException();
         }
 
+        public void Dispose()
+        {
+            foreach (var pair in _factories)
+                if (pair.Value is IDisposable disposable)
+                    disposable.Dispose();
+        }
+
         private class NotFoundSuitableFactoryException : Exception { }
     }
 }

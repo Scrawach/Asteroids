@@ -1,9 +1,10 @@
+using System;
 using Infrastructure.Factory.Abstract;
 using UnityEngine;
 
 namespace Infrastructure.Factory
 {
-    public class CachedFactory : IObjectFactory
+    public class CachedFactory : IObjectFactory, IDisposable
     {
         private readonly IObjectFactory _objectFactory;
         private GameObject _cachedObject;
@@ -17,8 +18,14 @@ namespace Infrastructure.Factory
             if (_beenCached)
                 return _cachedObject;
             _cachedObject = _objectFactory.Create();
-            _beenCached = false;
+            _beenCached = true;
             return _cachedObject;
+        }
+
+        public void Dispose()
+        {
+            _cachedObject = null;
+            _beenCached = false;
         }
     }
 }

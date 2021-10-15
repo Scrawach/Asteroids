@@ -20,8 +20,8 @@ namespace Components
             _cooldown = new MonoTimer(cooldown);
         }
 
-        private void Update() => 
-            _cooldown.Update(Time.deltaTime);
+        private void FixedUpdate() => 
+            _cooldown.Update(Time.fixedDeltaTime);
 
         public bool TryFire() => 
             CanShot() && Fire();

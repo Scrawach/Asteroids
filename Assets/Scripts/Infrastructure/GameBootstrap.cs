@@ -54,6 +54,15 @@ namespace Infrastructure
                 new Dictionary<ObjectId, IObjectFactory>
                 {
                     [ObjectId.Player] = playerFactory,
+                    [ObjectId.Asteroid] = new CachedFactory
+                        (
+                            new SpawnFactory
+                                (
+                                new InstantiateFactory(new Asset(assets, "Environment/AsteroidSpawn")), 
+                                new InstantiateFactory(new Asset(assets, "Environment/Asteroid")), 
+                                1f
+                                )
+                        ),
                     [ObjectId.UIRoot] = new CachedFactory(new InstantiateFactory(new Asset(assets, "UI/UIRoot")))
                 }
             );

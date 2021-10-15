@@ -21,6 +21,7 @@ namespace Infrastructure.States.Implementation
         public void Enter(IStateMachine stateMachine, string sceneName)
         {
             _stateMachine = stateMachine;
+            _gameFactory.Dispose();
             _sceneStorage.Get(sceneName).Load(OnLoaded);
         }
 
@@ -33,6 +34,7 @@ namespace Infrastructure.States.Implementation
         {
             var player = _gameFactory.Create(ObjectId.Player);
             var uiRoot = _gameFactory.Create(ObjectId.UIRoot);
+            var asteroid = _gameFactory.Create(ObjectId.Asteroid);
             _stateMachine.Enter<GameLoopState, GameObject>(player);
         }
     }
