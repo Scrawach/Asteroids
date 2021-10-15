@@ -32,38 +32,41 @@ namespace Infrastructure
             var assets = new AssetsDatabase();
             var staticDatabase = new StaticDatabase(assets);
             var playerFactory = new PlayerFactory
+            (
+                new EngineFactory
                 (
-                    new EngineFactory
+                    new WeaponFactory
                     (
-                        new WeaponFactory
+                        new MortalObjectFactory
                         (
-                            new MortalObjectFactory
-                            (
-                                new InstantiateFactory(new Asset(assets, "Player/PlayerShip")),
-                                new InstantiateFactory(new Asset(assets, "VFX/PlayerDeath_VFX"))
-                            ),
-                            new InstantiateFactory(new Asset(assets, "Weapon/Bullet"))
-                        ), 
-                        staticDatabase
-                    ),
+                            new InstantiateFactory(new Asset(assets, "Player/PlayerShip")),
+                            new InstantiateFactory(new Asset(assets, "VFX/PlayerDeath_VFX"))
+                        ),
+                        new InstantiateFactory(new Asset(assets, "Weapon/Bullet"))
+                    ), 
                     staticDatabase
-                );
+                ),
+                staticDatabase
+            );
+
+            var uiRootFactory = new CachedFactory(new InstantiateFactory(new Asset(assets, "UI/UIRoot")));
+            var asteroidSpawnFactory = new CachedFactory
+            (
+                new SpawnFactory
+                (
+                    new InstantiateFactory(new Asset(assets, "Environment/AsteroidSpawn")),
+                    new InstantiateFactory(new Asset(assets, "Environment/Asteroid")),
+                    cooldown: 1f
+                )
+            );
             
             var gameFactory = new GameFactory
             (
                 new Dictionary<ObjectId, IObjectFactory>
                 {
                     [ObjectId.Player] = playerFactory,
-                    [ObjectId.Asteroid] = new CachedFactory
-                        (
-                            new SpawnFactory
-                                (
-                                new InstantiateFactory(new Asset(assets, "Environment/AsteroidSpawn")), 
-                                new InstantiateFactory(new Asset(assets, "Environment/Asteroid")), 
-                                1f
-                                )
-                        ),
-                    [ObjectId.UIRoot] = new CachedFactory(new InstantiateFactory(new Asset(assets, "UI/UIRoot")))
+                    [ObjectId.Asteroid] = asteroidSpawnFactory,
+                    [ObjectId.UIRoot] = uiRootFactory
                 }
             );
 
