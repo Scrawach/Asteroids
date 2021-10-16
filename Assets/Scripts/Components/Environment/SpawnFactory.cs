@@ -1,4 +1,5 @@
 using System;
+using Extensions;
 using Infrastructure.Factory.Abstract;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -35,8 +36,16 @@ namespace Components.Environment
         private void Spawn()
         {
             var asteroid = _factory.Create();
-            var randomPointOnCircle = 5 * Random.insideUnitCircle;
+            var randomPointOnCircle = 5 * RandomPositionOnCircle();
             asteroid.transform.position = randomPointOnCircle;
+        }
+
+        private Vector2 RandomPositionOnCircle()
+        {
+            var angle = Random.Range(0, 360);
+            var xPos = Mathf.Cos(angle);
+            var yPos = Mathf.Sin(angle);
+            return new Vector2(xPos, yPos);
         }
     }
 }
