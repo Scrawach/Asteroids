@@ -5,11 +5,13 @@ using UnityEngine;
 
 namespace Components.Player
 {
-    [RequireComponent(typeof(IEngine))]
+    [RequireComponent(typeof(IMover))]
+    [RequireComponent(typeof(IRotator))]
     public class RotateToMouse : MonoBehaviour
     {
         private IPlayerInput _playerInput;
-        private IEngine _engine;
+        private IMover _mover;
+        private IRotator _rotator;
         private Camera _camera;
 
         public void Construct(IPlayerInput playerInput) => 
@@ -18,14 +20,15 @@ namespace Components.Player
         private void Awake()
         {
             _camera = Camera.main;
-            _engine = GetComponent<IEngine>();
+            _mover = GetComponent<IMover>();
+            _rotator = GetComponent<IRotator>();
         }
 
         private void FixedUpdate()
         {
             var worldPoint = _camera.ScreenToWorldPoint(_playerInput.Mouse);
             var direction = worldPoint - transform.position;
-            _engine.Rotate(to: direction.AsVector2());
+            _rotator.Rotate(to: direction.AsVector2());
         }
     }
 }

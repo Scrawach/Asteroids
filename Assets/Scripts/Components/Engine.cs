@@ -1,3 +1,4 @@
+using System;
 using Components.Abstract;
 using Extensions;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 namespace Components
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Engine : MonoBehaviour, IEngine
+    public class Engine : MonoBehaviour, IMover, IRotator
     {
         [SerializeField]
         private float _speed;

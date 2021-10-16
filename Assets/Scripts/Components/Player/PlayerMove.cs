@@ -5,19 +5,19 @@ using UnityEngine;
 
 namespace Components.Player
 {
-    [RequireComponent(typeof(IEngine))]
+    [RequireComponent(typeof(IMover))]
     public class PlayerMove : MonoBehaviour
     {
         private IPlayerInput _playerInput;
-        private IEngine _engine;
+        private IMover _mover;
         
         public void Construct(IPlayerInput playerInput) => 
             _playerInput = playerInput;
 
         private void Awake() => 
-            _engine = GetComponent<IEngine>();
+            _mover = GetComponent<IMover>();
 
         private void FixedUpdate() => 
-            _engine.Move(to: _playerInput.Axis);
+            _mover.Move(to: _playerInput.Axis);
     }
 }

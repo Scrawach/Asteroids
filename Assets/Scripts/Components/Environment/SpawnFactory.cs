@@ -37,6 +37,7 @@ namespace Components.Environment
         {
             var asteroid = _factory.Create();
             var randomPointOnCircle = 5 * RandomPositionOnCircle();
+            asteroid.GetComponent<EndlessMovement>().Construct(transform.position.AsVector2() - randomPointOnCircle);
             asteroid.transform.position = randomPointOnCircle;
         }
 
