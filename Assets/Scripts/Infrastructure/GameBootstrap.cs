@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Infrastructure.AssetManagement;
+using Infrastructure.AssetManagement.ConcreteAssets;
 using Infrastructure.Factory;
 using Infrastructure.Factory.Abstract;
 using Infrastructure.InputLogic;
@@ -39,23 +40,23 @@ namespace Infrastructure
                     (
                         new MortalObjectFactory
                         (
-                            new InstantiateFactory(new Asset(assets, "Player/PlayerShip")),
-                            new InstantiateFactory(new Asset(assets, "VFX/PlayerDeath_VFX"))
+                            new InstantiateFactory(new PlayerAsset(assets)),
+                            new InstantiateFactory(new VfxDeathAsset(assets))
                         ),
-                        new InstantiateFactory(new Asset(assets, "Weapon/Bullet"))
+                        new InstantiateFactory(new PlayerBulletAsset(assets))
                     ), 
                     staticDatabase
                 ),
                 staticDatabase
             );
 
-            var uiRootFactory = new CachedFactory(new InstantiateFactory(new Asset(assets, "UI/UIRoot")));
+            var uiRootFactory = new CachedFactory(new InstantiateFactory(new UIRootAsset(assets)));
             var asteroidSpawnFactory = new CachedFactory
             (
                 new SpawnFactory
                 (
-                    new InstantiateFactory(new Asset(assets, "Environment/AsteroidSpawn")),
-                    new InstantiateFactory(new Asset(assets, "Environment/Asteroid")),
+                    new InstantiateFactory(new AsteroidSpawnMarkAsset(assets)),
+                    new InstantiateFactory(new AsteroidAsset(assets)),
                     cooldown: 1f
                 )
             );
