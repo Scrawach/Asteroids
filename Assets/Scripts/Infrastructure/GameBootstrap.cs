@@ -56,7 +56,11 @@ namespace Infrastructure
                 new SpawnFactory
                 (
                     new InstantiateFactory(new AsteroidSpawnMarkAsset(assets)),
-                    new InstantiateFactory(new AsteroidAsset(assets)),
+                    new MortalObjectFactory
+                    (
+                        new InstantiateFactory(new AsteroidAsset(assets)),
+                        new InstantiateFactory(new VfxDeathAsset(assets))
+                    ),
                     cooldown: 1f
                 )
             );
