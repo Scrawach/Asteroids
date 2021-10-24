@@ -1,3 +1,4 @@
+using System;
 using Components.Abstract;
 using Components.Data;
 using UnityEngine;
@@ -11,6 +12,9 @@ namespace Components.OutOfBoard
 
         private void Awake() => 
             _damageable = GetComponent<IDamageable>();
+
+        private void Update() => 
+            OnUpdate();
 
         protected override void OnBecameInvisibleSafe() => 
             _damageable.Apply(new Damage(10));

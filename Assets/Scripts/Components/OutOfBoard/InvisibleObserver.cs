@@ -5,16 +5,16 @@ namespace Components.OutOfBoard
     public abstract class InvisibleObserver : MonoBehaviour
     {
         private bool _isInvisible;
+        
+        private void OnBecameInvisible() => 
+            _isInvisible = true;
 
-        private void Update()
+        protected void OnUpdate()
         {
             if (_isInvisible)
                 OnBecameInvisibleSafe();
         }
-
-        private void OnBecameInvisible() => 
-            _isInvisible = true;
-
+        
         protected abstract void OnBecameInvisibleSafe();
     }
 }
