@@ -9,14 +9,14 @@ namespace Components.Player
     {
         private IPlayerInput _playerInput;
         private IWeapon _weapon;
-        
+
         public void Construct(IPlayerInput playerInput) => 
             _playerInput = playerInput;
 
         private void Awake() => 
             _weapon = GetComponent<IWeapon>();
 
-        private void FixedUpdate()
+        private void Update()
         {
             if (_playerInput.IsAttackButtonDown())
                 _weapon.TryFire();
