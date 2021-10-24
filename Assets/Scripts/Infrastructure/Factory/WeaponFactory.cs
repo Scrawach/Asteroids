@@ -1,5 +1,6 @@
 using Components;
 using Infrastructure.Factory.Abstract;
+using Infrastructure.StaticData;
 using UnityEngine;
 
 namespace Infrastructure.Factory
@@ -8,17 +9,20 @@ namespace Infrastructure.Factory
     {
         private readonly IObjectFactory _objectFactory;
         private readonly BulletFactory _bulletFactory;
+        private readonly IStaticDatabase _staticDatabase;
 
-        public WeaponFactory(IObjectFactory objectFactory, BulletFactory bulletFactory)
+        public WeaponFactory(IObjectFactory objectFactory, BulletFactory bulletFactory, IStaticDatabase staticDatabase)
         {
             _objectFactory = objectFactory;
             _bulletFactory = bulletFactory;
+            _staticDatabase = staticDatabase;
         }
         
         public GameObject Create()
         {
             var obj = _objectFactory.Create();
-            obj.GetComponent<Weapon>().Construct(_bulletFactory, .1f);
+            var cooldown = _staticDatabase.ForWeapon().Cooldown;
+            obj.GetComponent<Weapon>().Construct(_bulletFactory, cooldown);
             return obj;
         }
     }

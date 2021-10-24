@@ -10,9 +10,11 @@ namespace Infrastructure.StaticData
     {
         private const string EnginePath = "StaticData/Engines";
         private const string PlayerInputPath = "StaticData/PlayerInputData";
+        private const string WeaponPath = "StaticData/PlayerWeapon";
         
         private readonly IAssetsDatabase _assetsDatabase;
         private Dictionary<EngineId, EngineConfig> _engines;
+        private WeaponConfig _weapon;
         private PlayerInputData _playerInputData;
 
         public StaticDatabase(IAssetsDatabase assetsDatabase) => 
@@ -25,6 +27,7 @@ namespace Infrastructure.StaticData
                 .ToDictionary(config => config.Id, data => data);
             _playerInputData = _assetsDatabase
                 .Load<PlayerInputData>(PlayerInputPath);
+            _weapon = _assetsDatabase.Load<WeaponConfig>(WeaponPath);
         }
 
         public EngineConfig ForEngine(EngineId engineId)
@@ -33,6 +36,9 @@ namespace Infrastructure.StaticData
                 return engineConfig;
             throw new NotExistDataWithThisIdException();
         }
+
+        public WeaponConfig ForWeapon() => 
+            _weapon;
 
         public PlayerInputData ForPlayerInput() => 
             _playerInputData;

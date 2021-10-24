@@ -50,7 +50,8 @@ namespace Infrastructure
                                 new InstantiateFactory(new PlayerBulletAsset(assets)),
                                 new InstantiateFactory(new VfxDeathAsset(assets))
                             )
-                        )
+                        ),
+                        staticDatabase
                     ), 
                     staticDatabase
                 ),
