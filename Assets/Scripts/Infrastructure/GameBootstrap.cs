@@ -43,7 +43,14 @@ namespace Infrastructure
                             new InstantiateFactory(new PlayerAsset(assets)),
                             new InstantiateFactory(new VfxDeathAsset(assets))
                         ),
-                        new InstantiateFactory(new PlayerBulletAsset(assets))
+                        new BulletFactory
+                        (
+                            new MortalObjectFactory
+                            (
+                                new InstantiateFactory(new PlayerBulletAsset(assets)),
+                                new InstantiateFactory(new VfxDeathAsset(assets))
+                            )
+                        )
                     ), 
                     staticDatabase
                 ),
@@ -61,7 +68,7 @@ namespace Infrastructure
                         new InstantiateFactory(new AsteroidAsset(assets)),
                         new InstantiateFactory(new VfxDeathAsset(assets))
                     ),
-                    cooldown: 1f
+                    cooldown: .5f
                 )
             );
             

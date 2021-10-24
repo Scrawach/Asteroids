@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using Components.Abstract;
+using Extensions;
+using Infrastructure.Factory;
 using Infrastructure.Factory.Abstract;
 using UnityEngine;
 
@@ -9,14 +11,14 @@ namespace Components
     public class Weapon : MonoBehaviour, IWeapon
     {
         [SerializeField] 
-        private Transform _shotPoint;
+        private Transform _shootPoint;
 
-        private IObjectFactory _buttonFactory;
+        private BulletFactory _bullets;
         private MonoTimer _cooldown;
 
-        public void Construct(IObjectFactory bullets, float cooldown)
+        public void Construct(BulletFactory bullets, float cooldown)
         {
-            _buttonFactory = bullets;
+            _bullets = bullets;
             _cooldown = new MonoTimer(cooldown);
         }
 
@@ -31,8 +33,7 @@ namespace Components
 
         private bool Fire()
         {
-            var bullet = _buttonFactory.Create();
-            bullet.transform.position = _shotPoint.position;
+            _bullets.Create(_shootPoint.position, _shootPoint.right);
             _cooldown.Start();
             return true;
         }
