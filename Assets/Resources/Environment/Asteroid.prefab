@@ -14,11 +14,12 @@ GameObject:
   - component: {fileID: 3499030441568938498}
   - component: {fileID: 5983985345207538439}
   - component: {fileID: 1470716227374864489}
+  - component: {fileID: 5174052587337685036}
   - component: {fileID: 7582796684255350434}
   - component: {fileID: 2549601674484609671}
   - component: {fileID: -2455904953863512525}
   - component: {fileID: -5670289823828281581}
-  - component: {fileID: -585265133072804743}
+  - component: {fileID: 8759117620487994790}
   m_Layer: 0
   m_Name: Asteroid
   m_TagString: Untagged
@@ -152,7 +153,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e0a120c15df4f7792d3abd3c81ec4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.2
+--- !u!114 &5174052587337685036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2188246249045129034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 311fef3dbdf4476eb2ae5f328f67340f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 0.5
 --- !u!114 &7582796684255350434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speedInDegrees: 45
---- !u!114 &-585265133072804743
+--- !u!114 &8759117620487994790
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,7 +226,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2188246249045129034}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e1eeae7c9674c87a9583329c2c7f06c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5dd989d979b047248b6d70194dc3046e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _value: 10

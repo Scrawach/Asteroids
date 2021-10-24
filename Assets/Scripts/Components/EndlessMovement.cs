@@ -1,24 +1,22 @@
-﻿using Extensions;
+﻿using System;
+using Components.Abstract;
 using UnityEngine;
 
 namespace Components
 {
+    [RequireComponent(typeof(IMover))]
     public class EndlessMovement : MonoBehaviour
     {
-        [SerializeField] 
-        private float _speed;
-
+        private IMover _mover;
         private Vector2 _direction;
 
-        public void Construct(Vector2 direction)
-        {
+        public void Construct(Vector2 direction) => 
             _direction = direction;
-        }
-        
-        private void Update()
-        {
-            var step = _speed * Time.deltaTime;
-            transform.position += (_direction * step).AsVector3();
-        }
+
+        private void Awake() => 
+            _mover = GetComponent<IMover>();
+
+        private void Update() => 
+            _mover.Move(_direction);
     }
 }
