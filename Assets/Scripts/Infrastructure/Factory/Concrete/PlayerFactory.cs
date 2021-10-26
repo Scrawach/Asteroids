@@ -1,7 +1,9 @@
 using Components.Player;
+using Infrastructure.AssetManagement;
 using Infrastructure.Factory.Abstract;
 using Infrastructure.InputLogic;
 using Infrastructure.StaticData;
+using StaticData;
 using UnityEngine;
 
 namespace Infrastructure.Factory.Concrete
@@ -9,23 +11,22 @@ namespace Infrastructure.Factory.Concrete
     public class PlayerFactory : IObjectFactory
     {
         private readonly IObjectFactory _factory;
-        private readonly IStaticDatabase _database;
+        private readonly IAsset<PlayerInputData> _config;
 
-        public PlayerFactory(IObjectFactory factory, IStaticDatabase database)
+        public PlayerFactory(IObjectFactory factory, IAsset<PlayerInputData> config)
         {
             _factory = factory;
-            _database = database;
+            _config = config;
         }
 
         public GameObject Create()
         {
             var player = _factory.Create();
-            var playerData = _database.ForPlayerInput();
-            var playerInput = new PlayerInput(playerData.HorizontalAxis, playerData.VerticalAxis, playerData.Fire,
-                playerData.AltFire);
-            player.GetComponent<PlayerMove>().Construct(playerInput);
-            player.GetComponent<RotateToMouse>().Construct(playerInput);
-            player.GetComponent<PlayerAttack>().Construct(playerInput);
+            var data = _config.Load();
+            var input = new PlayerInput(data.HorizontalAxis, data.VerticalAxis, data.Fire, data.AltFire);
+            player.GetComponent<PlayerMove>().Construct(input);
+            player.GetComponent<RotateToMouse>().Construct(input);
+            player.GetComponent<PlayerAttack>().Construct(input);
             return player;
         }
     }

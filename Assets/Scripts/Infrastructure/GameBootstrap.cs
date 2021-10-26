@@ -11,6 +11,7 @@ using Infrastructure.States;
 using Infrastructure.States.Abstract;
 using Infrastructure.States.Implementation;
 using Infrastructure.StaticData;
+using StaticData;
 using UnityEngine;
 
 namespace Infrastructure
@@ -52,11 +53,11 @@ namespace Infrastructure
                                 new InstantiateFactory(new VfxDeathAsset(assets))
                             )
                         ),
-                        staticDatabase
+                        new PlayerWeaponConfig(assets)
                     ), 
-                    staticDatabase
+                    new PlayerEngineConfig(assets)
                 ),
-                staticDatabase
+                new PlayerInputConfig(assets)
             );
 
             var uiRootFactory = new CachedFactory(new InstantiateFactory(new UIRootAsset(assets)));

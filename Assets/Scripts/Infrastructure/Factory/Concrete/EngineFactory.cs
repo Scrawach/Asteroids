@@ -1,5 +1,6 @@
 using Components;
 using Components.Player;
+using Infrastructure.AssetManagement;
 using Infrastructure.Factory.Abstract;
 using Infrastructure.StaticData;
 using StaticData;
@@ -10,20 +11,20 @@ namespace Infrastructure.Factory.Concrete
     public class EngineFactory : IObjectFactory
     {
         private readonly IObjectFactory _factory;
-        private readonly IStaticDatabase _database;
+        private readonly IAsset<EngineConfig> _config;
 
-        public EngineFactory(IObjectFactory objectFactory, IStaticDatabase database)
+        public EngineFactory(IObjectFactory objectFactory, IAsset<EngineConfig> config)
         {
             _factory = objectFactory;
-            _database = database;
+            _config = config;
         }
 
         public GameObject Create()
         {
             var obj = _factory.Create();
-            var engineData = _database.ForEngine(EngineId.Player);
-            obj.GetComponent<Engine>().Construct(engineData.MoveSpeed, 
-                engineData.RotateSpeed, engineData.AccelerationModifier);
+            var data = _config.Load();
+            var engine = obj.GetComponent<Engine>();
+            engine.Construct(data.MoveSpeed, data.RotateSpeed, data.AccelerationModifier);
             return obj;
         }
     }

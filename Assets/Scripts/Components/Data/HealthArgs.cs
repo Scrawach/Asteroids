@@ -1,8 +1,5 @@
-using System;
-
 namespace Components.Data
 {
-    [Serializable]
     public readonly struct HealthArgs
     {
         public readonly int Current;

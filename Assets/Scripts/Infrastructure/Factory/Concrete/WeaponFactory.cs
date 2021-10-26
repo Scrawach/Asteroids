@@ -1,7 +1,9 @@
 using Components;
 using Components.Player;
+using Infrastructure.AssetManagement;
 using Infrastructure.Factory.Abstract;
 using Infrastructure.StaticData;
+using StaticData;
 using UnityEngine;
 
 namespace Infrastructure.Factory.Concrete
@@ -10,20 +12,20 @@ namespace Infrastructure.Factory.Concrete
     {
         private readonly IObjectFactory _objectFactory;
         private readonly BulletFactory _bulletFactory;
-        private readonly IStaticDatabase _staticDatabase;
+        private readonly IAsset<WeaponConfig> _config;
 
-        public WeaponFactory(IObjectFactory objectFactory, BulletFactory bulletFactory, IStaticDatabase staticDatabase)
+        public WeaponFactory(IObjectFactory objectFactory, BulletFactory bulletFactory, IAsset<WeaponConfig> config)
         {
             _objectFactory = objectFactory;
             _bulletFactory = bulletFactory;
-            _staticDatabase = staticDatabase;
+            _config = config;
         }
         
         public GameObject Create()
         {
             var obj = _objectFactory.Create();
-            var cooldown = _staticDatabase.ForWeapon().Cooldown;
-            obj.GetComponent<Weapon>().Construct(_bulletFactory, cooldown);
+            var data = _config.Load();
+            obj.GetComponent<Weapon>().Construct(_bulletFactory, data.Cooldown);
             return obj;
         }
     }
