@@ -62,7 +62,7 @@ namespace Infrastructure
             var uiRootFactory = new CachedFactory(new InstantiateFactory(new UIRootAsset(assets)));
             var asteroidSpawnFactory = new CachedFactory
             (
-                new SpawnFactory
+                new SpawnerFactory
                 (
                     new InstantiateFactory(new AsteroidSpawnMarkAsset(assets)),
                     new MortalObjectFactory

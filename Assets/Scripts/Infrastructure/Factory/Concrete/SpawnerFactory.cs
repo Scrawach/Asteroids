@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Infrastructure.Factory.Concrete
 {
-    public class SpawnFactory : IObjectFactory
+    public class SpawnerFactory : IObjectFactory
     {
         private readonly IObjectFactory _objectFactory;
         private readonly IObjectFactory _spawnObject;
         private readonly float _cooldown;
 
-        public SpawnFactory(IObjectFactory objectFactory, IObjectFactory spawnObject, float cooldown)
+        public SpawnerFactory(IObjectFactory objectFactory, IObjectFactory spawnObject, float cooldown)
         {
             _objectFactory = objectFactory;
             _spawnObject = spawnObject;

@@ -1,7 +1,8 @@
 using Infrastructure.AssetManagement;
+using Infrastructure.Factory.Abstract;
 using UnityEngine;
 
-namespace Infrastructure.Factory.Abstract
+namespace Infrastructure.Factory.Concrete
 {
     public class InstantiateFactory : IObjectFactory
     {
