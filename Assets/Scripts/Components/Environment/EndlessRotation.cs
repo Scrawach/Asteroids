@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Components
+namespace Components.Environment
 {
     public class EndlessRotation : MonoBehaviour
     {

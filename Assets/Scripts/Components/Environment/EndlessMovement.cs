@@ -1,8 +1,7 @@
-﻿using System;
-using Components.Abstract;
+﻿using Components.Abstract;
 using UnityEngine;
 
-namespace Components
+namespace Components.Environment
 {
     [RequireComponent(typeof(IMover))]
     public class EndlessMovement : MonoBehaviour

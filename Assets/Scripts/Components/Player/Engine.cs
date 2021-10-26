@@ -1,9 +1,8 @@
-using System;
 using Components.Abstract;
 using Extensions;
 using UnityEngine;
 
-namespace Components
+namespace Components.Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class Engine : MonoBehaviour, IMover, IRotator

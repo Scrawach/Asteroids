@@ -1,28 +1,28 @@
-using System;
+﻿using Components.Abstract;
+using Components.Data;
 using Extensions;
 using UnityEngine;
 
-namespace Components
+namespace Components.Triggers
 {
-    [RequireComponent(typeof(EndlessMovement))]
     [RequireComponent(typeof(Collider2D))]
-    public class BounceTrigger : MonoBehaviour
+    public class DamageTrigger : MonoBehaviour
     {
         [SerializeField] 
-        private LayerMask _targetMask;
-        
-        private EndlessMovement _movement;
+        private int _value;
 
-        private void Awake() => 
-            _movement = GetComponent<EndlessMovement>();
+        [SerializeField] 
+        private LayerMask _targetMask;
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (IsNotAvailableLayer(other))
                 return;
-            _movement.Inverse();
+            
+            if (other.TryGetComponent(out IDamageable damageable))
+                damageable.Apply(new Damage(_value));
         }
-        
+
         private bool IsNotAvailableLayer(Component other) => 
             _targetMask.Contains(other.gameObject.layer) == false;
     }

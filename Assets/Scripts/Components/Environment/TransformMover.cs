@@ -2,7 +2,7 @@ using Components.Abstract;
 using Extensions;
 using UnityEngine;
 
-namespace Components
+namespace Components.Environment
 {
     public class TransformMover : MonoBehaviour, IMover
     {

@@ -1,13 +1,9 @@
-using System;
-using System.Collections;
 using Components.Abstract;
-using Extensions;
-using Infrastructure.Factory;
-using Infrastructure.Factory.Abstract;
+using Components.Common;
 using Infrastructure.Factory.Concrete;
 using UnityEngine;
 
-namespace Components
+namespace Components.Player
 {
     public class Weapon : MonoBehaviour, IWeapon
     {

@@ -1,4 +1,5 @@
 using Components;
+using Components.Environment;
 using Infrastructure.Factory.Abstract;
 using UnityEngine;
 

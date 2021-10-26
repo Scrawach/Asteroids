@@ -1,4 +1,5 @@
 using Components;
+using Components.Player;
 using Infrastructure.Factory.Abstract;
 using Infrastructure.StaticData;
 using StaticData;

@@ -1,4 +1,4 @@
-namespace Components
+namespace Components.Common
 {
     public class MonoTimer
     {
