@@ -18,5 +18,8 @@ namespace Components
 
         private void Update() => 
             _mover.Move(_direction);
+
+        public void Inverse() => 
+            _direction *= -1;
     }
 }
