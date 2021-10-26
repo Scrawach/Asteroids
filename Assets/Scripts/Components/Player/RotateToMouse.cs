@@ -10,7 +10,6 @@ namespace Components.Player
     public class RotateToMouse : MonoBehaviour
     {
         private IPlayerInput _playerInput;
-        private IMover _mover;
         private IRotator _rotator;
         private Camera _camera;
 
@@ -20,7 +19,6 @@ namespace Components.Player
         private void Awake()
         {
             _camera = Camera.main;
-            _mover = GetComponent<IMover>();
             _rotator = GetComponent<IRotator>();
         }
 
