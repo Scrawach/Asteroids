@@ -1,8 +1,9 @@
+using StaticData;
 using UnityEngine;
 
 namespace Infrastructure.AssetManagement
 {
-    public class Asset : IAsset
+    public class Asset<TAsset> : IAsset<TAsset> where TAsset : Object
     {
         private readonly IAssetsDatabase _database;
         private readonly string _path;
@@ -13,7 +14,7 @@ namespace Infrastructure.AssetManagement
             _path = path;
         }
 
-        public TAsset Instantiate<TAsset>() where TAsset : Object => 
-            (TAsset)Object.Instantiate(_database.Load<Object>(_path));
+        public TAsset Load() => 
+            _database.Load<TAsset>(_path);
     }
 }

@@ -2,7 +2,7 @@ using System;
 using Infrastructure.Factory.Abstract;
 using UnityEngine;
 
-namespace Infrastructure.Factory
+namespace Infrastructure.Factory.Concrete
 {
     public class CachedFactory : IObjectFactory, IDisposable
     {

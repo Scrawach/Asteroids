@@ -3,7 +3,7 @@ using Infrastructure.Factory.Abstract;
 using Infrastructure.StaticData;
 using UnityEngine;
 
-namespace Infrastructure.Factory
+namespace Infrastructure.Factory.Concrete
 {
     public class WeaponFactory : IObjectFactory
     {

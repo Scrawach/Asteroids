@@ -4,7 +4,7 @@ using Infrastructure.StaticData;
 using StaticData;
 using UnityEngine;
 
-namespace Infrastructure.Factory
+namespace Infrastructure.Factory.Concrete
 {
     public class EngineFactory : IObjectFactory
     {

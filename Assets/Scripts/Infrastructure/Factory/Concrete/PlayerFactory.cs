@@ -1,11 +1,10 @@
 using Components.Player;
-using Infrastructure.AssetManagement;
 using Infrastructure.Factory.Abstract;
 using Infrastructure.InputLogic;
 using Infrastructure.StaticData;
 using UnityEngine;
 
-namespace Infrastructure.Factory
+namespace Infrastructure.Factory.Concrete
 {
     public class PlayerFactory : IObjectFactory
     {

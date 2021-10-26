@@ -5,12 +5,12 @@ namespace Infrastructure.Factory.Abstract
 {
     public class InstantiateFactory : IObjectFactory
     {
-        private readonly IAsset _asset;
+        private readonly IAsset<GameObject> _asset;
 
-        public InstantiateFactory(IAsset asset) => 
+        public InstantiateFactory(IAsset<GameObject> asset) => 
             _asset = asset;
         
         public GameObject Create() => 
-            _asset.Instantiate<GameObject>();
+            Object.Instantiate(_asset.Load());
     }
 }

@@ -4,6 +4,7 @@ using Components.Abstract;
 using Extensions;
 using Infrastructure.Factory;
 using Infrastructure.Factory.Abstract;
+using Infrastructure.Factory.Concrete;
 using UnityEngine;
 
 namespace Components
