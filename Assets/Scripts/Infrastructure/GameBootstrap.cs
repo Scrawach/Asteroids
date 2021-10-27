@@ -20,6 +20,12 @@ namespace Infrastructure
     {
         private void Awake()
         {
+            NewGame().Run();
+            DontDestroyOnLoad(this);
+        }
+
+        private Game NewGame()
+        {
             var sceneStorage = new SceneStorage
             (
                 new CachedAvailableScenes
@@ -85,7 +91,7 @@ namespace Infrastructure
                 }
             );
 
-            var game = new Game
+            return new Game
             (
                 new StateMachine
                 (
@@ -97,9 +103,6 @@ namespace Infrastructure
                     }
                 )
             );
-            
-            game.Run();
-            DontDestroyOnLoad(this);
         }
     }
 }
