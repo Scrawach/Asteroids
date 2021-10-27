@@ -9,20 +9,17 @@ namespace Infrastructure.States.Implementation
         private const string InitialScene = "Initial";
         private const string GameLoopScene = "GameLoop";
         private readonly ISceneStorage _sceneStorage;
-        private readonly IStaticDatabase _staticDatabase;
 
         private IStateMachine _stateMachine;
 
-        public BootstrapState(ISceneStorage sceneStorage, IStaticDatabase staticDatabase)
+        public BootstrapState(ISceneStorage sceneStorage)
         {
             _sceneStorage = sceneStorage;
-            _staticDatabase = staticDatabase;
         }
         
         public void Enter(IStateMachine stateMachine)
         {
             _stateMachine = stateMachine;
-            _staticDatabase.Load();
             _sceneStorage
                 .Get(InitialScene)
                 .Load(onLoaded: EnterLoadLevel);

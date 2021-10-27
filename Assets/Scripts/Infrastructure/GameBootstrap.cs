@@ -39,7 +39,6 @@ namespace Infrastructure
             );
             
             var assets = new AssetsDatabase();
-            var staticDatabase = new StaticDatabase(assets);
             var playerFactory = new PlayerFactory
             (
                 new EngineFactory
@@ -97,7 +96,7 @@ namespace Infrastructure
                 (
                     new Dictionary<Type, IState>
                     {
-                        [typeof(BootstrapState)] = new BootstrapState(sceneStorage, staticDatabase),
+                        [typeof(BootstrapState)] = new BootstrapState(sceneStorage),
                         [typeof(LoadLevelState)] = new LoadLevelState(sceneStorage, gameFactory),
                         [typeof(GameLoopState)] = new GameLoopState()
                     }
