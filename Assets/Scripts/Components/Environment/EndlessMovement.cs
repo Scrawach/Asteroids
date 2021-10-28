@@ -7,18 +7,19 @@ namespace Components.Environment
     public class EndlessMovement : MonoBehaviour
     {
         private IMover _mover;
-        private Vector2 _direction;
+
+        public Vector2 Direction { get; private set; }
 
         public void Construct(Vector2 direction) => 
-            _direction = direction;
+            Direction = direction;
 
         private void Awake() => 
             _mover = GetComponent<IMover>();
 
         private void Update() => 
-            _mover.Move(_direction);
+            _mover.Move(Direction);
 
         public void Inverse() => 
-            _direction *= -1;
+            Direction *= -1;
     }
 }

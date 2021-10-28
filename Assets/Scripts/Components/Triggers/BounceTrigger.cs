@@ -20,7 +20,11 @@ namespace Components.Triggers
         {
             if (IsNotAvailableLayer(other))
                 return;
-            _movement.Inverse();
+            
+            if (other.TryGetComponent(out EndlessMovement endlessMovement))
+                _movement.Construct(endlessMovement.Direction);
+            else
+                _movement.Inverse();
         }
         
         private bool IsNotAvailableLayer(Component other) => 
